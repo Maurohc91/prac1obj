@@ -1,0 +1,87 @@
+@startuml
+
+class Cadena {
+  - String nombre
+  - ArrayList<Programa> listaProgramas
+  + Cadena(String nombre)
+  + anyadirPrograma(Programa programa)
+  + eliminarPrograma(Programa programa)
+  + mostrarPrograma()
+  + getNombre(): String
+  + setNombre(String nombre)
+  + getListaProgramas(): ArrayList<Programa>
+  + setListaProgramas(ArrayList<Programa> listaProgramas)
+  + toString(): String
+}
+
+class Empleado {
+  - static int cantidadProgramas
+  - static final String ID_EMPLEADO
+  - String nombre
+  - String cargo
+  - Empleado director
+  - String id
+  + Empleado(String nombre)
+  + Empleado(String nombre, String cargo, Empleado director)
+  - String calcularID(): String
+  + getNombre(): String
+  + setNombre(String nombre)
+  + getDirector(): Empleado
+  + setDirector(Empleado director)
+  + getCargo(): String
+  + setCargo(String cargo)
+  + toString(): String
+}
+
+class Invitado {
+  - String nombre
+  - String profesion
+  - LocalDate fecha_visita
+  - int temporada
+  + Invitado(String nombre, String profesion, int temporada)
+  + getNombre(): String
+  + setNombre(String nombre)
+  + getTemporada(): int
+  + setTemporada(int temporada)
+  + getFecha_visita(): LocalDate
+  + setFecha_visita(LocalDate fecha_visita)
+  + getProfesion(): String
+  + setProfesion(String profesion)
+  + toString(): String
+}
+
+class Programa {
+  - String nombre
+  - Cadena cadena
+  - int temporadas
+  - ArrayList<Invitado> listaInvitados
+  - ArrayList<Empleado> listaEmpleados
+  - Empleado director
+  + Programa(String nombre, Cadena cadena, String director)
+  + anyadirEmpleado(String nombre, String cargo, Empleado director)
+  + eliminarEmpleado(String nombre)
+  + mostrarEmpleados()
+  + anyadirInvitado(String nombre, String profesion, int temporada)
+  + eliminarInvitado(String nombre)
+  + getNombre(): String
+  + setNombre(String nombre)
+  + getTemporadas(): int
+  + setTemporadas(int temporadas)
+  + getCadena(): Cadena
+  + setCadena(Cadena cadena)
+  + getListaEmpleados(): ArrayList<Empleado>
+  + setListaEmpleados(ArrayList<Empleado> listaEmpleados)
+  + getListaInvitados(): ArrayList<Invitado>
+  + setListaInvitados(ArrayList<Invitado> listaInvitados)
+  + getDirector(): Empleado
+  + setDirector(Empleado director)
+  + toString(): String
+}
+
+Cadena "1" *-- "*" Programa : contiene
+Programa "1" *-- "*" Empleado : tiene
+Programa "1" *-- "*" Invitado : tiene
+Empleado "1" o-- "1" Empleado : es dirigido por
+Programa "1" *-- "1" Cadena : pertenece a
+
+@enduml
